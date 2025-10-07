@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر نجم ستور</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #004aad;
+      --secondary: #f7b500;
+      --text: #1a1a1a;
+      --muted: #6c757d;
+      --bg: #f4f6fb;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #004aad, #002b6b);
+      color: #fff;
+      padding: 2.5rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.05);
+      transform: skewY(-6deg);
+      pointer-events: none;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.75;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      margin: 0 0 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      padding: 0.9rem 1.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: #1a1a1a;
+      box-shadow: 0 12px 30px rgba(247, 181, 0, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 35px rgba(247, 181, 0, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #fff;
+    }
+
+    .stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .stat h3 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .stat p {
+      margin: 0.5rem 0 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    main {
+      margin-top: -2rem;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .section {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .section-title a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .features,
+    .categories,
+    .products,
+    .testimonials {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      border-radius: var(--radius);
+      border: 1px solid #edf1f9;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: #fff;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0, 74, 173, 0.12);
+    }
+
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-content: center;
+      margin-bottom: 1rem;
+      background: rgba(0, 74, 173, 0.12);
+      color: var(--primary);
+      font-size: 1.6rem;
+    }
+
+    .card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .product-card {
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-image {
+      background: linear-gradient(135deg, rgba(0, 74, 173, 0.12), rgba(0, 74, 173, 0.3));
+      height: 180px;
+      display: grid;
+      place-content: center;
+      font-size: 2.2rem;
+      color: var(--primary);
+    }
+
+    .product-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(247, 181, 0, 0.18);
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .testimonial {
+      background: linear-gradient(135deg, rgba(0, 74, 173, 0.05), rgba(0, 74, 173, 0.12));
+      border: none;
+    }
+
+    .testimonial .customer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .customer img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #004aad, #1c75d8);
+      color: #fff;
+      text-align: center;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .cta p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    footer {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .btn-group {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><span>ن</span>نجم ستور</div>
+      <ul class="nav-links">
+        <li><a href="#features">المميزات</a></li>
+        <li><a href="#categories">الأقسام</a></li>
+        <li><a href="#products">الأكثر مبيعًا</a></li>
+        <li><a href="#testimonials">آراء العملاء</a></li>
+        <li><a href="#contact">تواصل</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <div class="hero-text">
+        <h1>تجربة تسوق فاخرة بلمسة محلية</h1>
+        <p>
+          اكتشف مجموعات حصرية من الإلكترونيات، الأزياء، والاكسسوارات المختارة بعناية.
+          نوفر لك ضمان الجودة، سرعة التوصيل، وخدمات ما بعد البيع الموثوقة عبر منصة سلة.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#products">استكشف المنتجات</a>
+          <a class="btn btn-outline" href="#contact">تواصل معنا</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <h3>+50k</h3>
+            <p>منتج تم شحنه لعملائنا في الخليج</p>
+          </div>
+          <div class="stat">
+            <h3>4.9/5</h3>
+            <p>تقييم متوسط لآراء العملاء خلال آخر 12 شهر</p>
+          </div>
+          <div class="stat">
+            <h3>24/7</h3>
+            <p>دعم فني وخدمة عملاء على مدار الساعة</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="card" style="background: rgba(255,255,255,0.12); border: none; color: #fff; backdrop-filter: blur(12px);">
+          <div class="badge" style="background: rgba(247,181,0,0.25); color: #fff;">
+            جديد
+          </div>
+          <h3 style="margin: 1.5rem 0 0.75rem;">إطلاق مجموعة الأجهزة الذكية</h3>
+          <p style="margin: 0; color: rgba(255,255,255,0.8);">
+            أحدث الهواتف والساعات الذكية مع ضمان ممتد وعروض تركيب مجانية.
+          </p>
+          <a href="#products" class="btn" style="margin-top: 1.5rem; background: #fff; color: var(--primary);">تسوق الآن</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="features">
+      <div class="section-title">
+        <h2>لماذا نجم ستور؟</h2>
+        <a href="#contact">تعرف أكثر</a>
+      </div>
+      <div class="features">
+        <article class="card">
+          <div class="card-icon">🚚</div>
+          <h3>شحن سريع ومرن</h3>
+          <p>خدمات توصيل سريعة إلى جميع مناطق المملكة مع خيارات تتبع فورية واستلام من المتجر.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>ضمان موثوق</h3>
+          <p>منتجات أصلية مضمونة مع إمكانية الاسترجاع خلال 14 يومًا ودعم فني متخصص.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">💳</div>
+          <h3>خيارات دفع متعددة</h3>
+          <p>دفع آمن عبر مدى، آبل باي، وتقسيط مع تمارا وتابي بدون فوائد إضافية.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🎁</div>
+          <h3>عروض موسمية</h3>
+          <p>خصومات حصرية لعملاء سلة وبرامج ولاء مخصصة للشركات والمؤسسات.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-title">
+        <h2>أقسام المتجر</h2>
+        <a href="#">مشاهدة الكل</a>
+      </div>
+      <div class="categories">
+        <article class="card">
+          <h3>الإلكترونيات الذكية</h3>
+          <p>هواتف، أجهزة لوحية، ملحقات، وحلول المنازل الذكية.</p>
+        </article>
+        <article class="card">
+          <h3>أزياء مختارة</h3>
+          <p>تصاميم حصرية من علامات سعودية وعالمية بتنسيقات جاهزة.</p>
+        </article>
+        <article class="card">
+          <h3>الجمال والعناية</h3>
+          <p>منتجات عناية شخصية، عطور فاخرة، وحزم هدايا مميزة.</p>
+        </article>
+        <article class="card">
+          <h3>ألعاب وهوايات</h3>
+          <p>ألعاب إلكترونية، بطاقات شحن، وأدوات إبداعية لجميع الأعمار.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-title">
+        <h2>الأكثر مبيعًا</h2>
+        <a href="#">اكتشف المزيد</a>
+      </div>
+      <div class="products">
+        <article class="card product-card">
+          <div class="product-image">📱</div>
+          <div class="product-body">
+            <div class="badge">تخفيض %20</div>
+            <h3>هاتف نجم برو ماكس</h3>
+            <p>شاشة OLED بحجم 6.7 بوصة مع كاميرا احترافية وشحن سريع 65 واط.</p>
+            <div class="product-price">3,499 ر.س</div>
+            <a class="btn btn-outline" href="#">أضف إلى السلة</a>
+          </div>
+        </article>
+        <article class="card product-card">
+          <div class="product-image">⌚</div>
+          <div class="product-body">
+            <div class="badge">إصدار محدود</div>
+            <h3>ساعة لياقة ذكية</h3>
+            <p>تتبع صحي متقدم، مقاومة للماء، وتكامل كامل مع أجهزة أندرويد وآبل.</p>
+            <div class="product-price">899 ر.س</div>
+            <a class="btn btn-outline" href="#">أضف إلى السلة</a>
+          </div>
+        </article>
+        <article class="card product-card">
+          <div class="product-image">🎧</div>
+          <div class="product-body">
+            <div class="badge">شحن مجاني</div>
+            <h3>سماعات نجم ألترا</h3>
+            <p>إلغاء ضجيج متقدم وصوت محيطي ثلاثي الأبعاد مع بطارية تدوم 30 ساعة.</p>
+            <div class="product-price">749 ر.س</div>
+            <a class="btn btn-outline" href="#">أضف إلى السلة</a>
+          </div>
+        </article>
+        <article class="card product-card">
+          <div class="product-image">💻</div>
+          <div class="product-body">
+            <div class="badge">ضمان 3 سنوات</div>
+            <h3>حاسب محمول للأعمال</h3>
+            <p>معالج سريع، لوحة مفاتيح مضيئة، وميزات أمان متقدمة للشركات.</p>
+            <div class="product-price">5,299 ر.س</div>
+            <a class="btn btn-outline" href="#">أضف إلى السلة</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="section-title">
+        <h2>ماذا يقول عملاؤنا</h2>
+        <a href="#">قراءة المزيد</a>
+      </div>
+      <div class="testimonials">
+        <article class="card testimonial">
+          <div class="customer">
+            <img src="https://i.pravatar.cc/96?img=12" alt="صورة عميل">
+            <div>
+              <strong>أمل الغامدي</strong>
+              <p style="margin: 0; color: var(--primary);">رائدة أعمال</p>
+            </div>
+          </div>
+          <p>تعاملت مع نجم ستور لتجهيز هدايا شركتنا، الخدمة كانت سريعة والتغليف فخم جدًا. أوصي بهم بشدة.</p>
+        </article>
+        <article class="card testimonial">
+          <div class="customer">
+            <img src="https://i.pravatar.cc/96?img=25" alt="صورة عميل">
+            <div>
+              <strong>سلمان الحربي</strong>
+              <p style="margin: 0; color: var(--primary);">مدير تقنية</p>
+            </div>
+          </div>
+          <p>أعجبتني خيارات التقسيط والتوصيل في اليوم التالي. المنتجات أصلية والدعم الفني متعاون.</p>
+        </article>
+        <article class="card testimonial">
+          <div class="customer">
+            <img src="https://i.pravatar.cc/96?img=32" alt="صورة عميل">
+            <div>
+              <strong>سارة الشهري</strong>
+              <p style="margin: 0; color: var(--primary);">صانعة محتوى</p>
+            </div>
+          </div>
+          <p>العروض الموسمية على الأجهزة الذكية ممتازة، وتم توصيل الطلب في أقل من 24 ساعة.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cta" id="contact">
+      <h2>جاهز لبدء شراكة معنا؟</h2>
+      <p>انضم إلى أكثر من 200 علامة تجارية تعتمد على نجم ستور لإيصال منتجاتها للعملاء باحترافية.</p>
+      <a class="btn btn-primary" href="mailto:hello@najmstore.sa">راسلنا الآن</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2024 نجم ستور. جميع الحقوق محفوظة. <a href="https://najmstore.sa" target="_blank" rel="noopener">زيارة المتجر</a>
+  </footer>
+</body>
+</html>
